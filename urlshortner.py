@@ -1,8 +1,7 @@
 import random
 import string
-
+import streamlit as st
 d = {}
-
 
 def getShortURL(longURL):
     
@@ -27,17 +26,35 @@ def getShortURL(longURL):
     else:
         d[shorturl] = longURL
         
-    a = "http://www.shorty.com/" + shorturl
+    a = "http://www.shortee.com/" + shorturl
     
     return a
     
 def getLongURL(a):
     
-    k = a[24:]
+    k = a[23:]
 
     if k in d :
         return d[k]
     else :
         return None
 
-getShortURL("https://github.com/umeshc9988/URL-Shortner")
+
+# Standard Message :)
+st.write('''
+         Hello Guys !! 
+         ''')
+
+# Button Creation for easy submission
+button = '''<button type= "submit">Shortee</button>'''
+
+# User input of URL
+a = st.text_input('Enter the URL for shortening : ')
+st.markdown(button, unsafe_allow_html = True)
+
+
+b = getShortURL(a)
+long = getLongURL(b)
+
+# Returning the short URL which has reference of long URL
+st.write('Shortee URL : [',str(b),'](',str(long),')')
